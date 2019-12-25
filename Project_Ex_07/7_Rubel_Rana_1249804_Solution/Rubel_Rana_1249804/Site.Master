@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Rubel_Rana_1249804.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+     <%: Scripts.Render("~/bundles/modernizr") %>
+
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.4.1.js"></script>
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-light bg-primary navbar-expand-md fixed-top alert-light " style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+            <div class="container">
+                    <a class="navbar-brand" runat="server" href="~/">Trainee</a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                <div class="navbar-collapse collapse" ID="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Information/trainee_summary.aspx">Trainee Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Information/course_manage.aspx">Manage Course</a></li>
+                        <li class="nav-item"><a  class="nav-link" runat="server" href="~/Information/trainee_manage.aspx">Manage Trainee</a></li>
+                        <li class="nav-item"><a  class="nav-link" runat="server" href="Report.aspx">Report</a></li>
+                        </ul>
+                    <ul class="nav navbar-nav ml-auto">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                                <li class="nav-item ml-auto"><a class="nav-link" runat="server" href="~/Account/Register">Register</a></li>
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/Account/Login"><i class="fa fa-user"></i>Log in</a></li>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - All Rights Reserved</p>
+            </footer>
+        </div>
+        <script src="Scripts/jquery-3.4.1.js"></script>
+        <asp:ContentPlaceHolder ID="foot" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
